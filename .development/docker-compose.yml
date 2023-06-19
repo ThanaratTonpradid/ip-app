@@ -1,41 +1,42 @@
-version: '3.7'
-x-network_mode: &default-network-mode bridge
-x-restart: &default-restart always
-x-logging: &default-logging
-  options:
-    max-size: '200k'
-    max-file: '1'
-  driver: json-file
-x-volume: &default-volume
-  - './data:/var/lib/mysql'
+version: "3.2"
 
 services:
-  mysql:
-    image: mysql:8
-    container_name: owa_mysql
-    env_file: ./mysql.env
-    ports:
-      - '127.0.0.1:3307:3306'
-    volumes: *default-volume
-    network_mode: *default-network-mode
-    restart: *default-restart
-    logging: *default-logging
-    command:
-      - --character-set-server=utf8mb4
-      - --collation-server=utf8mb4_unicode_ci
-      - --default-authentication-plugin=mysql_native_password
-    depends_on:
-      - permission
-
   permission:
-    image: busybox:latest
-    container_name: owa_mysql_permission
+    image: busybox:1.35
+    restart: always
+    command: tail -f /etc/hostname
+    volumes:
+      - ./data/mysql:/data/mysql
+      - ./data/redis:/data/redis
+    healthcheck:
+      interval: 5s
+      test: find /data -mindepth 1 -maxdepth 1 ! -perm 777 -exec chmod 777 {} +
+
+  mysql:
+    image: bitnami/mysql:8.0
+    restart: always
+    depends_on:
+      permission:
+        condition: service_healthy
+    ports:
+      - "3307:3306"
+    volumes:
+      - ./data/mysql:/bitnami/mysql/data
     environment:
-      - DATA_PATH=/var/lib/mysql
-      - NOTICE=/tmp/notice.txt
-    user: root
-    command: sh -c 'chmod 777 $${DATA_PATH} && env > $${NOTICE} && tail -f $${NOTICE}'
-    network_mode: *default-network-mode
-    volumes: *default-volume
-    restart: *default-restart
-    logging: *default-logging
+      ALLOW_EMPTY_PASSWORD: "yes"
+      MYSQL_USER: owa
+      MYSQL_PASSWORD: aa111111
+      MYSQL_DATABASE: owa
+
+  redis:
+    image: bitnami/redis:6.2
+    restart: always
+    depends_on:
+      permission:
+        condition: service_healthy
+    ports:
+      - "6379:6379"
+    volumes:
+      - ./data/redis:/bitnami/redis/data
+    environment:
+      ALLOW_EMPTY_PASSWORD: "yes"
