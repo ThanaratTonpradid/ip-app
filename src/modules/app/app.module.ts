@@ -5,6 +5,7 @@ import { AppService } from './app.service';
 import { appConfig, owaTypeOrmConfig } from '../../configs';
 import { IpModule } from '../ip/ip.module';
 import { BootstrapModule } from '../bootstrap/bootstrap.module';
+import { UsersModule } from '../users/users.module';
 
 @Module({
   imports: [
@@ -15,6 +16,7 @@ import { BootstrapModule } from '../bootstrap/bootstrap.module';
     }),
     BootstrapModule,
     IpModule,
+    UsersModule,
   ],
   controllers: [AppController],
   providers: [AppService],
