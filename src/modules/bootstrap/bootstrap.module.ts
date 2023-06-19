@@ -1,8 +1,8 @@
-import { ConnectionName, TypeOrmConfigName } from 'src/constants';
-
 import { Global, Module } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { TypeOrmModule, TypeOrmModuleOptions } from '@nestjs/typeorm';
+import { ConnectionName, TypeOrmConfigName } from '../../constants';
+import { RedisModule } from '../redis/redis.module';
 
 @Global()
 @Module({
@@ -14,6 +14,8 @@ import { TypeOrmModule, TypeOrmModuleOptions } from '@nestjs/typeorm';
       },
       inject: [ConfigService],
     }),
+    RedisModule.registerRedisSession(),
   ],
+  exports: [RedisModule],
 })
 export class BootstrapModule {}

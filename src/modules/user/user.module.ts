@@ -6,8 +6,11 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConnectionName } from '../../constants';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([OwaUser], ConnectionName.OWA)],
+  imports: [
+    TypeOrmModule.forFeature([OwaUser], ConnectionName.OWA),
+  ],
   controllers: [UserController],
   providers: [UserService],
+  exports: [UserService],
 })
 export class UserModule {}
