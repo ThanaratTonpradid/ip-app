@@ -17,8 +17,23 @@ export class UserService {
     private userRepository: Repository<OwaUser>,
   ) {}
 
+  getUserSelectOption() {
+    return {
+      id: true,
+      username: true,
+      fullname: true,
+      email: true,
+      role: true,
+      createdAt: true,
+      updatedAt: true,
+      deletedAt: true,
+    }
+  }
+
   async findAll(): Promise<OwaUser[]> {
+    const selectOpt = this.getUserSelectOption();
     const users = await this.userRepository.find({
+      select: selectOpt,
       where: {
         deletedAt: IsNull(),
       },
@@ -28,7 +43,9 @@ export class UserService {
   }
 
   async findOneById(id: number): Promise<OwaUser> {
+    const selectOpt = this.getUserSelectOption();
     const user = await this.userRepository.findOne({
+      select: selectOpt,
       where: {
         id,
         deletedAt: IsNull(),
@@ -56,7 +73,8 @@ export class UserService {
       password: PasswordUtility.genPassword(password),
     });
     const created = await this.userRepository.save(createPayload);
-    return { ...created, password: null };
+    const createdTarget = await this.findOneById(created.id);
+    return createdTarget;
   }
 
   async updated(input: UpdateUserDto): Promise<OwaUser> {
@@ -73,7 +91,7 @@ export class UserService {
       this.logger.warn(`update affected: ${affected}`);
     }
     const updatedTarget = await this.findOneById(input.id);
-    return { ...updatedTarget, password: null };
+    return updatedTarget;
   }
 
   async updatePassword(input: UpdateUserPasswordDto): Promise<OwaUser> {
@@ -90,7 +108,7 @@ export class UserService {
       this.logger.warn(`update password affected: ${affected}`);
     }
     const updatedTarget = await this.findOneById(input.id);
-    return { ...updatedTarget, password: null };
+    return updatedTarget;
   }
 
   async delete(id: number): Promise<BooleanResultDto> {
