@@ -12,3 +12,11 @@ export enum ErrorCode {
 export enum ConfigName {
   APP = 'APP',
 }
+
+export enum TypeOrmConfigName {
+  OWA = 'OWA',
+}
+
+export enum ConnectionName {
+  OWA = 'OWA',
+}
