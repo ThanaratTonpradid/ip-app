@@ -14,7 +14,7 @@ export class UpdateUserDto extends BaseDto<UpdateUserDto> {
   id: number;
 
   @IsOptional()
-  @Length(50)
+  @Length(8, 50)
   username: string;
 
   @IsOptional()
@@ -23,11 +23,11 @@ export class UpdateUserDto extends BaseDto<UpdateUserDto> {
 
   @IsOptional()
   @IsString()
-  @Length(100)
+  @Length(10, 100)
   fullname: string;
 
   @IsEmail()
   @IsOptional()
-  @Length(100)
+  @Length(10, 100)
   email: string;
 }

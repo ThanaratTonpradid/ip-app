@@ -1,9 +1,15 @@
-import { IsDefined, IsEmail, IsOptional, IsString, Length } from 'class-validator';
+import {
+  IsDefined,
+  IsEmail,
+  IsOptional,
+  IsString,
+  Length,
+} from 'class-validator';
 import { BaseDto } from '../../../dto';
 
 export class CreateUserDto extends BaseDto<CreateUserDto> {
   @IsDefined()
-  @Length(50)
+  @Length(8, 50)
   username: string;
 
   @IsDefined()
@@ -16,11 +22,11 @@ export class CreateUserDto extends BaseDto<CreateUserDto> {
 
   @IsOptional()
   @IsString()
-  @Length(100)
+  @Length(10, 100)
   fullname: string;
 
   @IsEmail()
   @IsOptional()
-  @Length(100)
+  @Length(10, 100)
   email: string;
 }
