@@ -4,15 +4,16 @@ import { OwaUser } from '../../entities/owa_user.entity';
 import { IsNull, Repository } from 'typeorm';
 import { BooleanResultDto } from '../../dto';
 import { CreateUserDto, UpdateUserDto, UpdateUserPasswordDto } from './dto';
-import { DateTimeUtility } from 'src/utils/date.util';
+import { DateTimeUtility } from '../../utils/date.util';
 import { Logger } from '@dollarsign/logger';
 import { PasswordUtility } from '../../utils/password.util';
+import { ConnectionName } from '../../constants';
 
 @Injectable()
 export class UserService {
   public readonly logger = new Logger(UserService.name);
   constructor(
-    @InjectRepository(OwaUser)
+    @InjectRepository(OwaUser, ConnectionName.OWA)
     private userRepository: Repository<OwaUser>,
   ) {}
 
