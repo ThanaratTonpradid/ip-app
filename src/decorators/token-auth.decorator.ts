@@ -7,7 +7,7 @@ import {
   ApiUnauthorizedResponse,
 } from '@nestjs/swagger';
 
-import { TokenAuthGuard } from '../guards';
+import { TokenAuthGuard } from '../modules/auth/guards';
 
 export function TokenAuth(): MethodDecorator {
   return applyDecorators(

@@ -1,7 +1,7 @@
 import { Controller, Get, Req } from '@nestjs/common';
 import { IpService } from './ip.service';
 import { Request } from 'express';
-import { TokenAuth } from '../auth/decorators/token-auth.decorator';
+import { TokenAuth } from '../../decorators/token-auth.decorator';
 import { ApiResponse } from '@nestjs/swagger';
 import { IPInfoDto } from './dto';
 

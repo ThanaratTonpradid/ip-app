@@ -12,7 +12,7 @@ import { OwaUser } from '../../entities/owa_user.entity';
 import { PasswordUtility } from '../../utils/password.util';
 import { AccessTokenDto, LoginDto } from './dto';
 import { BooleanResultDto } from '../../dto';
-import { InjectRedisSession } from '../auth/decorators';
+import { InjectRedisSession } from '../../decorators';
 
 @Injectable()
 export class AuthService {

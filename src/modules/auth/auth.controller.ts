@@ -17,7 +17,7 @@ import { AuthService } from './auth.service';
 import { LoginDto, AccessTokenDto, JwtPayloadDto } from './dto';
 import { JwtPayload } from './interfaces';
 import { classTransformOptions } from './interfaces/class-transform.constant';
-import { CurrentSession, JwtGuard } from './decorators';
+import { CurrentSession, JwtGuard } from '../../decorators';
 import { BooleanResultDto, ExceptionResponseDto } from '../../dto';
 
 @ApiTags('auth')
