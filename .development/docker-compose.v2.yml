@@ -19,7 +19,7 @@ services:
       permission:
         condition: service_healthy
     ports:
-      - "3307:3306"
+      - "3306:3306"
     volumes:
       - ./data/mysql:/bitnami/mysql/data
     environment:
