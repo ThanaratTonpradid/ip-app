@@ -13,7 +13,9 @@ const logger = new Logger('APP');
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   const configService = app.get(ConfigService);
-  const { port, swaggerUi, loggerConsole } = configService.get<AppConfig>(ConfigName.APP);
+  const { port, swaggerUi, loggerConsole } = configService.get<AppConfig>(
+    ConfigName.APP,
+  );
   app.enableCors();
   app.useLogger(loggerConsole ? console : logger);
   app.useGlobalPipes(new ValidationPipe({ transform: true }));

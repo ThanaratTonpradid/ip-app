@@ -20,7 +20,9 @@ export const owaTypeOrmConfig = registerAs(
     synchronize: StringUtility.isEnabled(process.env.DB_OWA_SYNC),
     timezone: '+07:00',
     entities: ['**/entities/*.js'],
-    ssl: StringUtility.isEnabled(process.env.DB_OWA_SSL) ? { rejectUnauthorized: false } : false,
+    ssl: StringUtility.isEnabled(process.env.DB_OWA_SSL)
+      ? { rejectUnauthorized: false }
+      : false,
     extra: {
       charset: 'utf8mb4_unicode_ci',
     },

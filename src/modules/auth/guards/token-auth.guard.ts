@@ -2,7 +2,12 @@ import { Request } from 'express';
 import { AppConfig } from 'src/configs/app.config';
 
 import { CommonException } from '@dollarsign/nestjs-exceptions';
-import { CanActivate, ExecutionContext, Injectable, UnauthorizedException } from '@nestjs/common';
+import {
+  CanActivate,
+  ExecutionContext,
+  Injectable,
+  UnauthorizedException,
+} from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 
 import { ConfigName, DefaultMessage, ErrorCode } from '../../../constants';

@@ -37,9 +37,7 @@ export class AuthController {
   @ApiBadRequestResponse({ type: ExceptionResponseDto })
   @ApiUnauthorizedResponse({ type: ExceptionResponseDto })
   @Post('login')
-  async login(
-    @Body() loginDto: LoginDto,
-  ): Promise<AccessTokenDto> {
+  async login(@Body() loginDto: LoginDto): Promise<AccessTokenDto> {
     const login = await this.authService.login(loginDto);
     this.logger.warn(`login: ${JSON.stringify(login)}`);
     return login;
@@ -48,7 +46,9 @@ export class AuthController {
   @HttpCode(HttpStatus.OK)
   @JwtGuard()
   @Post('logout')
-  async logout(@CurrentSession() jwtPayload: JwtPayload): Promise<BooleanResultDto> {
+  async logout(
+    @CurrentSession() jwtPayload: JwtPayload,
+  ): Promise<BooleanResultDto> {
     return this.authService.logout(jwtPayload);
   }
 }

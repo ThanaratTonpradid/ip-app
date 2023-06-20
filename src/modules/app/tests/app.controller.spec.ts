@@ -19,7 +19,9 @@ describe('AppController', () => {
 
   describe('root', () => {
     it('should called `appService.getAccessDeniedMessage`', () => {
-      const spy = jest.spyOn(appService, 'getAccessDeniedMessage').mockReturnValueOnce(DefaultMessage.ACCESS_DENIED);
+      const spy = jest
+        .spyOn(appService, 'getAccessDeniedMessage')
+        .mockReturnValueOnce(DefaultMessage.ACCESS_DENIED);
       appController.getAccessDeniedMessage();
       expect(spy).toHaveBeenCalled();
     });

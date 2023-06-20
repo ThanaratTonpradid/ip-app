@@ -5,7 +5,8 @@ import { JwtPayload } from '../interfaces';
 
 export class JwtPayloadDto
   extends BaseDto<JwtPayloadDto>
-  implements JwtPayload {
+  implements JwtPayload
+{
   @Expose()
   key: string;
 

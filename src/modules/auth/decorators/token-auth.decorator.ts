@@ -1,7 +1,11 @@
 import { ExceptionResponseDto } from 'src/dto/exception.dto';
 
 import { applyDecorators, UseGuards } from '@nestjs/common';
-import { ApiBadRequestResponse, ApiBearerAuth, ApiUnauthorizedResponse } from '@nestjs/swagger';
+import {
+  ApiBadRequestResponse,
+  ApiBearerAuth,
+  ApiUnauthorizedResponse,
+} from '@nestjs/swagger';
 
 import { TokenAuthGuard } from '../guards';
 

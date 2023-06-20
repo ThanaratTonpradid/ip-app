@@ -5,7 +5,12 @@ import { IpModule } from '../ip/ip.module';
 import { BootstrapModule } from '../bootstrap/bootstrap.module';
 import { UserModule } from '../user/user.module';
 import { ConfigModule } from '@nestjs/config';
-import { appConfig, owaTypeOrmConfig, redisConfig, jwtConfig } from '../../configs';
+import {
+  appConfig,
+  owaTypeOrmConfig,
+  redisConfig,
+  jwtConfig,
+} from '../../configs';
 import { AuthModule } from '../auth/auth.module';
 
 @Module({

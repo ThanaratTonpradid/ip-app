@@ -2,7 +2,7 @@ import { DynamicModule, Module } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import Redis from 'ioredis';
 import { RedisName } from '../../configs';
-import {  } from '../../constants';
+import {} from '../../constants';
 import { RedisModuleOptions } from 'nestjs-redis';
 
 @Module({})
@@ -12,7 +12,9 @@ export class RedisModule {
       provide: RedisName.SESSION,
       useFactory: (config: ConfigService): Redis => {
         const redisConfigs = config.get<RedisModuleOptions[]>('redis');
-        const redisOptions = redisConfigs.find((i: RedisModuleOptions) => i.name === RedisName.SESSION)
+        const redisOptions = redisConfigs.find(
+          (i: RedisModuleOptions) => i.name === RedisName.SESSION,
+        );
         const redis = new Redis(redisOptions);
         return redis;
       },

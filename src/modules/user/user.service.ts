@@ -27,7 +27,7 @@ export class UserService {
       createdAt: true,
       updatedAt: true,
       deletedAt: true,
-    }
+    };
   }
 
   async findAll(): Promise<OwaUser[]> {
