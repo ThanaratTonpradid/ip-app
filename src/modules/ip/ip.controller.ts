@@ -1,9 +1,10 @@
-import { Controller, Get, Req } from '@nestjs/common';
-import { IpService } from './ip.service';
-import { Request } from 'express';
-import { TokenAuth } from '../../decorators/token-auth.decorator';
+import { Controller, Get, HttpStatus, Req } from '@nestjs/common';
 import { ApiResponse } from '@nestjs/swagger';
+import { Request } from 'express';
+import { IpService } from './ip.service';
 import { IPInfoDto } from './dto';
+import { TokenAuth, AccessInfo } from '../../decorators';
+import { AccessInfoPayload } from '../../interfaces';
 
 @Controller('ip')
 export class IpController {
@@ -26,5 +27,14 @@ export class IpController {
   })
   async getLocation(@Req() req: Request): Promise<any> {
     return this.ipService.getLocation(req);
+  }
+
+  @TokenAuth()
+  @Get('access-info')
+  @ApiResponse({ status: HttpStatus.OK })
+  getAccessInfo(
+    @AccessInfo() accessInfo: AccessInfoPayload,
+  ): AccessInfoPayload {
+    return this.ipService.getAccessInfo(accessInfo);
   }
 }

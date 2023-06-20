@@ -1,9 +1,10 @@
 import { Logger } from '@dollarsign/logger';
 import { Injectable } from '@nestjs/common';
+import { HttpService } from '@nestjs/axios';
 import { Request } from 'express';
 import { UAParser } from 'ua-parser-js';
 import { IPInfo } from './interfaces';
-import { HttpService } from '@nestjs/axios';
+import { AccessInfoPayload } from '../../interfaces';
 
 @Injectable()
 export class IpService {
@@ -39,5 +40,10 @@ export class IpService {
       this.logger.error(`ip(${req.ip})getLocation() error`, error);
       throw error;
     }
+  }
+
+  getAccessInfo(accessInfo: AccessInfoPayload): AccessInfoPayload {
+    this.logger.debug(accessInfo);
+    return accessInfo;
   }
 }
