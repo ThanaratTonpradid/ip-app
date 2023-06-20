@@ -4,6 +4,8 @@ ENV TZ Asia/Bangkok
 WORKDIR ${HOME}
 RUN apk add --no-cache tzdata
 
+FROM c18s/geoip as geoip
+
 FROM base-image as builder
 RUN apk add --no-cache make gcc g++ python3
 COPY yarn.lock package.json /src/
@@ -23,6 +25,8 @@ RUN cp -a /app/dist/. /srv/
 FROM base-image
 ENV PATH=${PATH}:/app/.deployment/cmd
 COPY --from=app /srv/ .
+COPY --from=geoip /app/GeoLite2-City.mmdb geoip/
+COPY --from=geoip /app/GeoLite2-ASN.mmdb geoip/
 COPY .deployment/env ./env
 COPY .deployment/cmd ./.deployment/cmd
 CMD ["start"]
