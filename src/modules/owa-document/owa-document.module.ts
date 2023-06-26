@@ -10,4 +10,4 @@ import { ConnectionName } from '../../constants';
   controllers: [OwaDocumentController],
   providers: [OwaDocumentService],
 })
-export class OwaSiteModule {}
+export class OwaDocumentModule {}
