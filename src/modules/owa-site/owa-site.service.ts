@@ -33,19 +33,19 @@ export class OwaSiteService {
 
   async findAll(): Promise<OwaSite[]> {
     const selectOpt = this.getOwaSiteSelectOption();
-    const owaSiteList = await this.owaSiteRepository.find({
+    const list = await this.owaSiteRepository.find({
       select: selectOpt,
       where: {
         deletedAt: IsNull(),
       },
       order: { id: 'ASC' },
     });
-    return owaSiteList;
+    return list;
   }
 
   async findOneById(id: number): Promise<OwaSite> {
     const selectOpt = this.getOwaSiteSelectOption();
-    const owaSite = await this.owaSiteRepository.findOne({
+    const item = await this.owaSiteRepository.findOne({
       select: selectOpt,
       where: {
         id,
@@ -53,7 +53,7 @@ export class OwaSiteService {
       },
       order: { id: 'ASC' },
     });
-    return owaSite;
+    return item;
   }
 
   async created(input: CreateOwaSiteDto): Promise<OwaSite> {

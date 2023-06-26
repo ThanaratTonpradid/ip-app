@@ -30,20 +30,20 @@ export class OwaUaService {
 
   async findAll(): Promise<OwaUa[]> {
     const selectOpt = this.getOwaUaSelectOption();
-    const users = await this.owaUaRepository.find({
+    const list = await this.owaUaRepository.find({
       select: selectOpt,
       where: {
         deletedAt: IsNull(),
       },
       order: { id: 'ASC' },
     });
-    this.logger.debug(users);
-    return users;
+    this.logger.debug(list);
+    return list;
   }
 
   async findOneById(id: number): Promise<OwaUa> {
     const selectOpt = this.getOwaUaSelectOption();
-    const user = await this.owaUaRepository.findOne({
+    const item = await this.owaUaRepository.findOne({
       select: selectOpt,
       where: {
         id,
@@ -51,7 +51,7 @@ export class OwaUaService {
       },
       order: { id: 'ASC' },
     });
-    return user;
+    return item;
   }
 
   async created(input: CreateOwaUaDto): Promise<OwaUa> {
