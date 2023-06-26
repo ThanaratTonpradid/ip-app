@@ -16,7 +16,7 @@ export class OwaHostService {
     private owaHostRepository: Repository<OwaHost>,
   ) {}
 
-  getOwaOsSelectOption() {
+  getOwaHostSelectOption() {
     return {
       id: true,
       ipAddress: true,
@@ -33,7 +33,7 @@ export class OwaHostService {
   }
 
   async findAll(): Promise<OwaHost[]> {
-    const selectOpt = this.getOwaOsSelectOption();
+    const selectOpt = this.getOwaHostSelectOption();
     const list = await this.owaHostRepository.find({
       select: selectOpt,
       where: {
@@ -45,7 +45,7 @@ export class OwaHostService {
   }
 
   async findOneById(id: number): Promise<OwaHost> {
-    const selectOpt = this.getOwaOsSelectOption();
+    const selectOpt = this.getOwaHostSelectOption();
     const item = await this.owaHostRepository.findOne({
       select: selectOpt,
       where: {
