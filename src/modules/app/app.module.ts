@@ -1,18 +1,23 @@
 import { Module } from '@nestjs/common';
+import { ConfigModule } from '@nestjs/config';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { IpModule } from '../ip/ip.module';
-import { BootstrapModule } from '../bootstrap/bootstrap.module';
-import { UserModule } from '../user/user.module';
-import { ConfigModule } from '@nestjs/config';
 import {
   appConfig,
   owaTypeOrmConfig,
   redisConfig,
   jwtConfig,
 } from '../../configs';
+import { BootstrapModule } from '../bootstrap/bootstrap.module';
 import { AuthModule } from '../auth/auth.module';
+import { IpModule } from '../ip/ip.module';
+import { OwaDocumentModule } from '../owa-document/owa-document.module';
+import { OwaHostModule } from '../owa-host/owa-host.module';
+import { OwaOsModule } from '../owa-os/owa-os.module';
 import { OwaSiteModule } from '../owa-site/owa-site.module';
+import { OwaUaModule } from '../owa-ua/owa-ua.module';
+import { OwaVisitorModule } from '../owa-visitor/owa-visitor.module';
+import { UserModule } from '../user/user.module';
 
 @Module({
   imports: [
@@ -23,9 +28,14 @@ import { OwaSiteModule } from '../owa-site/owa-site.module';
     }),
     BootstrapModule,
     AuthModule,
-    OwaSiteModule,
-    UserModule,
     IpModule,
+    OwaDocumentModule,
+    OwaHostModule,
+    OwaOsModule,
+    OwaSiteModule,
+    OwaUaModule,
+    OwaVisitorModule,
+    UserModule,
   ],
   controllers: [AppController],
   providers: [AppService],
