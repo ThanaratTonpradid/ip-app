@@ -1,5 +1,5 @@
 export DOCKER_IMAGE=local/pv/api/ip:app
-export DOCKER_BUILD_PATH = Dockerfile ..
+export DOCKER_BUILD_PATH = .deployment/Dockerfile .
 export SOURCE_IMAGE=thanarat/ip-app:latest
 
 infra-up:
@@ -19,3 +19,6 @@ push:
 
 tag:
 	docker tag $(DOCKER_IMAGE) $(SOURCE_IMAGE)
+
+shell:
+	docker run --rm -it --link local_mysql --link local_redis -p 3000:3000 $(DOCKER_IMAGE) sh
