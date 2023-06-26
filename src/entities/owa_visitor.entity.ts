@@ -8,7 +8,7 @@ import {
 } from 'typeorm';
 
 @Entity()
-export class OwsVisitor {
+export class OwaVisitor {
   @PrimaryGeneratedColumn({ type: 'int', unsigned: true })
   id: number;
   @Column({
