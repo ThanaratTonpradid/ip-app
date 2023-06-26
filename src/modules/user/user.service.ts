@@ -39,6 +39,7 @@ export class UserService {
       },
       order: { id: 'ASC' },
     });
+    this.logger.debug(users);
     return users;
   }
 

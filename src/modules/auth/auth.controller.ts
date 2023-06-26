@@ -27,7 +27,7 @@ export class AuthController {
 
   constructor(private readonly authService: AuthService) {}
 
-  @JwtGuard()
+  @HttpCode(HttpStatus.OK)
   @Get('session')
   session(@CurrentSession() jwtPayload: JwtPayload): JwtPayloadDto {
     return plainToClass(JwtPayloadDto, jwtPayload, classTransformOptions);
@@ -39,7 +39,6 @@ export class AuthController {
   @Post('login')
   async login(@Body() loginDto: LoginDto): Promise<AccessTokenDto> {
     const login = await this.authService.login(loginDto);
-    this.logger.warn(`login: ${JSON.stringify(login)}`);
     return login;
   }
 

@@ -12,6 +12,7 @@ import {
   jwtConfig,
 } from '../../configs';
 import { AuthModule } from '../auth/auth.module';
+import { OwaSiteModule } from '../owa-site/owa-site.module';
 
 @Module({
   imports: [
@@ -22,6 +23,7 @@ import { AuthModule } from '../auth/auth.module';
     }),
     BootstrapModule,
     AuthModule,
+    OwaSiteModule,
     UserModule,
     IpModule,
   ],
