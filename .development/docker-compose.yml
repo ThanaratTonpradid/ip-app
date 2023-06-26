@@ -4,6 +4,7 @@ services:
   permission:
     image: busybox:1.35
     restart: always
+    network_mode: bridge
     command: tail -f /etc/hostname
     volumes:
       - ./data/mysql:/data/mysql
@@ -15,9 +16,13 @@ services:
   mysql:
     image: bitnami/mysql:8.0
     restart: always
+    container_name: local_mysql
+    network_mode: bridge
     depends_on:
       permission:
         condition: service_healthy
+    expose:
+      - 3306
     ports:
       - "3306:3306"
     volumes:
@@ -31,9 +36,13 @@ services:
   redis:
     image: bitnami/redis:6.2
     restart: always
+    container_name: local_redis
+    network_mode: bridge
     depends_on:
       permission:
         condition: service_healthy
+    expose:
+      - 6379
     ports:
       - "6379:6379"
     volumes:
