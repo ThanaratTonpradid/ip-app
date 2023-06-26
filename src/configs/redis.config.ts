@@ -24,7 +24,11 @@ function eventHandler(name: string) {
 export const redisConfig = registerAs('redis', (): RedisModuleOptions[] => [
   {
     name: RedisName.SESSION,
-    url: process.env.REDIS_SESSION_URL,
+    host: process.env.REDIS_SESSION_HOST,
+    port: parseInt(process.env.REDIS_SESSION_PORT, 10) || 6379,
+    username: process.env.REDIS_SESSION_USERNAME,
+    password: process.env.REDIS_SESSION_PASSWORD,
+    db: parseInt(process.env.REDIS_SESSION_DB, 10) || 0,
     onClientReady: eventHandler(RedisName.SESSION),
   },
 ]);
