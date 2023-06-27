@@ -10,7 +10,10 @@ const bufferCity = readFileSync(`${process.cwd()}/geoip/GeoLite2-City.mmdb`);
 const lookupAsn = new Reader<AsnResponse>(bufferAsn);
 const lookupCity = new Reader<CityResponse>(bufferCity);
 
-export const accessInfoFactory = (_, req: ExecutionContext): AccessInfoPayload => {
+export const accessInfoFactory = (
+  _,
+  req: ExecutionContext,
+): AccessInfoPayload => {
   const request = req.switchToHttp().getRequest();
   const prefix = request?.headers ? '' : '[2].req.';
   const userAgent = get(request, `${prefix}headers.user-agent`, '');

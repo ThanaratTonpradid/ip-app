@@ -1,2 +1,2 @@
-export * from './create-owa-host.dto'
-export * from './update-owa-host.dto'
+export * from './create-owa-host.dto';
+export * from './update-owa-host.dto';
