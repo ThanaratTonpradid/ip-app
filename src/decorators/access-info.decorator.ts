@@ -1,4 +1,3 @@
-import { Logger } from '@dollarsign/logger';
 import { ExecutionContext, createParamDecorator } from '@nestjs/common';
 import { readFileSync } from 'fs';
 import { get } from 'lodash';
