@@ -18,7 +18,7 @@ import { OwaUser } from 'src/entities/owa_user.entity';
 import { UserService } from './user.service';
 import { CreateUserDto, UpdateUserDto, UpdateUserPasswordDto } from './dto';
 import { BooleanResultDto, ExceptionResponseDto } from '../../dto';
-import { TokenAuth } from '../../decorators/token-auth.decorator';
+import { TokenAuth } from '../../decorators';
 
 @ApiTags('user')
 @Controller('user')
