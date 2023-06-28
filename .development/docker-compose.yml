@@ -49,3 +49,4 @@ services:
       - ./data/redis:/bitnami/redis/data
     environment:
       ALLOW_EMPTY_PASSWORD: "yes"
+      REDIS_PASSWORD: "aa111111"
