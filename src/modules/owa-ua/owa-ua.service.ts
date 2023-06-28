@@ -10,7 +10,7 @@ import { ConnectionName } from '../../constants';
 
 @Injectable()
 export class OwaUaService {
-    public readonly logger = new Logger(OwaUaService.name);
+  public readonly logger = new Logger(OwaUaService.name);
   constructor(
     @InjectRepository(OwaUa, ConnectionName.OWA)
     private owaUaRepository: Repository<OwaUa>,

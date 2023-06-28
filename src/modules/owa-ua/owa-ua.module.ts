@@ -8,6 +8,6 @@ import { OwaUa } from '../../entities/owa_ua.entity';
 @Module({
   imports: [TypeOrmModule.forFeature([OwaUa], ConnectionName.OWA)],
   providers: [OwaUaService],
-  controllers: [OwaUaController]
+  controllers: [OwaUaController],
 })
 export class OwaUaModule {}

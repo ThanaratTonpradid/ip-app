@@ -58,7 +58,7 @@ export class OwaSiteService {
 
   async created(input: CreateOwaSiteDto): Promise<OwaSite> {
     const { domain, ...payload } = input;
-    const siteId = uuidV5(domain, uuidV5.URL)
+    const siteId = uuidV5(domain, uuidV5.URL);
     const createPayload = this.owaSiteRepository.create({
       siteId,
       domain,
