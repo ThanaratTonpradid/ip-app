@@ -1,12 +1,12 @@
 import { Logger } from '@dollarsign/logger';
 import { GlobalExceptionFilter } from '@dollarsign/nestjs-exceptions';
 import { NestFactory } from '@nestjs/core';
-import { AppModule } from './modules/app/app.module';
+import { ValidationPipe } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
+import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
+import { AppModule } from './modules/app/app.module';
 import { AppConfig } from './configs';
 import { ConfigName } from './constants';
-import { ValidationPipe } from '@nestjs/common';
-import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 
 const logger = new Logger('APP');
 
