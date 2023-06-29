@@ -10,6 +10,7 @@ export interface AppConfig {
   loggerConsole: boolean;
   port: number;
   swaggerUi: boolean;
+  sessionSecret: string;
 }
 
 export const appConfig = registerAs(
@@ -20,5 +21,6 @@ export const appConfig = registerAs(
     loggerConsole: isEnabled(process.env.LOGGER_CONSOLE),
     port: parseInt(process.env.APP_PORT, 10) || 3000,
     swaggerUi: isEnabled(process.env.SWAGGER_UI),
+    sessionSecret: process.env.SESSION_SECRET,
   }),
 );

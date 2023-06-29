@@ -1,4 +1,4 @@
-import { Module } from '@nestjs/common';
+import { Module, NestModule, MiddlewareConsumer } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
@@ -18,6 +18,7 @@ import { OwaSiteModule } from '../owa-site/owa-site.module';
 import { OwaUaModule } from '../owa-ua/owa-ua.module';
 import { OwaVisitorModule } from '../owa-visitor/owa-visitor.module';
 import { UserModule } from '../user/user.module';
+import { OwaSessionModule } from '../owa-session/owa-session.module';
 
 @Module({
   imports: [
@@ -35,6 +36,7 @@ import { UserModule } from '../user/user.module';
     OwaSiteModule,
     OwaUaModule,
     OwaVisitorModule,
+    OwaSessionModule,
     UserModule,
   ],
   controllers: [AppController],

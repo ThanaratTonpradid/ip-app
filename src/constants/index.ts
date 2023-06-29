@@ -17,6 +17,10 @@ export enum ErrorCode {
   SESSION_EXPIRED = 'SESSION_EXPIRED',
 }
 
+export enum ConstantName {
+  SESSION_KEY = 'owa.session.id',
+}
+
 export enum ConfigName {
   APP = 'APP',
 }
