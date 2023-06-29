@@ -26,4 +26,24 @@ export class RedisModule {
       exports: [RedisSessionProvider],
     };
   }
+
+  static registerRedisData(): DynamicModule {
+    const RedisSessionProvider = {
+      provide: RedisName.DATA,
+      useFactory: (config: ConfigService): Redis => {
+        const redisConfigs = config.get<RedisModuleOptions[]>('redis');
+        const redisOptions = redisConfigs.find(
+          (i: RedisModuleOptions) => i.name === RedisName.DATA,
+        );
+        const redis = new Redis(redisOptions);
+        return redis;
+      },
+      inject: [ConfigService],
+    };
+    return {
+      module: RedisModule,
+      providers: [RedisSessionProvider],
+      exports: [RedisSessionProvider],
+    };
+  }
 }

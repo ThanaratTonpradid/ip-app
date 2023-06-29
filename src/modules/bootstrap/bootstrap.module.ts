@@ -15,6 +15,7 @@ import { RedisModule } from '../redis/redis.module';
       inject: [ConfigService],
     }),
     RedisModule.registerRedisSession(),
+    RedisModule.registerRedisData(),
   ],
   exports: [RedisModule],
 })

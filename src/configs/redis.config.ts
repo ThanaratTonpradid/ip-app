@@ -7,6 +7,7 @@ const logger = new Logger({ name: 'RedisConfig' });
 
 export enum RedisName {
   SESSION = 'REDIS_SESSION',
+  DATA = 'REDIS_DATA',
 }
 
 function eventHandler(name: string) {
@@ -30,5 +31,14 @@ export const redisConfig = registerAs('redis', (): RedisModuleOptions[] => [
     password: process.env.REDIS_SESSION_PASSWORD,
     db: parseInt(process.env.REDIS_SESSION_DB, 10) || 0,
     onClientReady: eventHandler(RedisName.SESSION),
+  },
+  {
+    name: RedisName.DATA,
+    host: process.env.REDIS_DATA_HOST,
+    port: parseInt(process.env.REDIS_DATA_PORT, 10) || 6379,
+    username: process.env.REDIS_DATA_USERNAME,
+    password: process.env.REDIS_DATA_PASSWORD,
+    db: parseInt(process.env.REDIS_DATA_DB, 10) || 1,
+    onClientReady: eventHandler(RedisName.DATA),
   },
 ]);
