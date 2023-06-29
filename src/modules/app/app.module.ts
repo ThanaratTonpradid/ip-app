@@ -17,8 +17,8 @@ import { OwaOsModule } from '../owa-os/owa-os.module';
 import { OwaSiteModule } from '../owa-site/owa-site.module';
 import { OwaUaModule } from '../owa-ua/owa-ua.module';
 import { OwaVisitorModule } from '../owa-visitor/owa-visitor.module';
+import { OwaTrackerModule } from '../owa-tracker/owa-tracker.module';
 import { UserModule } from '../user/user.module';
-import { OwaSessionModule } from '../owa-session/owa-session.module';
 
 @Module({
   imports: [
@@ -36,7 +36,7 @@ import { OwaSessionModule } from '../owa-session/owa-session.module';
     OwaSiteModule,
     OwaUaModule,
     OwaVisitorModule,
-    OwaSessionModule,
+    OwaTrackerModule,
     UserModule,
   ],
   controllers: [AppController],
