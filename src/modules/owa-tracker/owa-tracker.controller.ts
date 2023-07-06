@@ -8,6 +8,7 @@ import {
 } from '@nestjs/common';
 import { ApiConsumes, ApiTags } from '@nestjs/swagger';
 import { FileInterceptor } from '@nestjs/platform-express';
+import { JwtGuard } from '../../decorators';
 import { OwaTrackerService } from './owa-tracker.service';
 import { CreateTrackerTemplateRequestDto } from './dto';
 import { CreateTrackerTemplateRequest, GetTrackerTemplateRequest } from './interfaces';
@@ -17,6 +18,7 @@ import { CreateTrackerTemplateRequest, GetTrackerTemplateRequest } from './inter
 export class OwaTrackerController {
   constructor(private readonly owaTrackerService: OwaTrackerService) {}
 
+  @JwtGuard()
   @Get(':siteId')
   async getTracker(
     @Param('siteId') siteId: number,
@@ -25,6 +27,7 @@ export class OwaTrackerController {
     return this.owaTrackerService.getTracker(request);
   }
 
+  @JwtGuard()
   @ApiConsumes('multipart/form-data')
   @UseInterceptors(FileInterceptor('file'))
   @Put('template')
