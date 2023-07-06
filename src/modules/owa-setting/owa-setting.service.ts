@@ -1,7 +1,7 @@
 import { Logger } from '@dollarsign/logger';
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { IsNull, Repository } from 'typeorm';
+import { In, IsNull, Repository } from 'typeorm';
 import { OwaSetting } from '../../entities/owa_setting.entity';
 import { ConnectionName } from '../../constants';
 import { DateTimeUtility } from '../../utils/date.util';
@@ -44,6 +44,19 @@ export class OwaSettingService {
       select: selectOpt,
       where: {
         id,
+        deletedAt: IsNull(),
+      },
+      order: { id: 'ASC' },
+    });
+    return item;
+  }
+
+  async findOneByName(setting: string): Promise<OwaSetting> {
+    const selectOpt = this.getOwaOsSelectOption();
+    const item = await this.owaSettingRepository.findOne({
+      select: selectOpt,
+      where: {
+        name: setting,
         deletedAt: IsNull(),
       },
       order: { id: 'ASC' },
