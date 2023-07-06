@@ -9,5 +9,6 @@ import { ConnectionName } from '../../constants';
   imports: [TypeOrmModule.forFeature([OwaSite], ConnectionName.OWA)],
   controllers: [OwaSiteController],
   providers: [OwaSiteService],
+  exports: [OwaSiteService],
 })
 export class OwaSiteModule {}

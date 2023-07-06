@@ -19,6 +19,7 @@ export enum ErrorCode {
 
 export enum ConstantName {
   SESSION_KEY = 'owa.session.id',
+  OWA_TRACKER_TEMPLATE_KEY = 'OWA:TRACKER:TEMPLATE',
 }
 
 export enum ConfigName {
