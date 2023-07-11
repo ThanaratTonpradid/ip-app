@@ -8,6 +8,7 @@ import {
   UpdateDateColumn,
 } from 'typeorm';
 import { OwaSession } from './owa_session.entity';
+import { OwaRequest } from './owa_request.entity';
 
 @Entity()
 export class OwaHost {
@@ -73,4 +74,7 @@ export class OwaHost {
 
   @OneToMany(() => OwaSession, (session: OwaSession) => session.host)
   sessionList: OwaSession[];
+
+  @OneToMany(() => OwaRequest, (req: OwaRequest) => req.host)
+  requestList: OwaRequest[];
 }

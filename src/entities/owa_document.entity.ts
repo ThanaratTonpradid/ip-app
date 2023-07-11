@@ -8,6 +8,7 @@ import {
   UpdateDateColumn,
 } from 'typeorm';
 import { OwaSession } from './owa_session.entity';
+import { OwaRequest } from './owa_request.entity';
 
 @Entity()
 export class OwaDocument {
@@ -58,4 +59,7 @@ export class OwaDocument {
 
   @OneToMany(() => OwaSession, (session: OwaSession) => session.lastPage)
   lastSessionList: OwaSession[];
+
+  @OneToMany(() => OwaRequest, (req: OwaRequest) => req.document)
+  requestList: OwaRequest[];
 }

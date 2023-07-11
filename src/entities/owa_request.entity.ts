@@ -8,23 +8,24 @@ import {
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
+import { OwaDocument } from './owa_document.entity';
 import { OwaHost } from './owa_host.entity';
 import { OwaOs } from './owa_os.entity';
+import { OwaSite } from './owa_site.entity';
 import { OwaUa } from './owa_ua.entity';
 import { OwaVisitor } from './owa_visitor.entity';
-import { OwaSite } from './owa_site.entity';
-import { OwaDocument } from './owa_document.entity';
-import { OwaRequest } from './owa_request.entity';
+import { OwaSession } from './owa_session.entity';
 
 @Entity()
-export class OwaSession {
+export class OwaRequest {
   @PrimaryGeneratedColumn({ type: 'int', unsigned: true })
   id: number;
   @Column({
-    type: 'timestamp',
+    type: 'varchar',
+    length: 255,
     nullable: false,
   })
-  sessionTimestamp: string;
+  ipAddress: string;
   @Column({
     type: 'varchar',
     length: 255,
@@ -37,6 +38,11 @@ export class OwaSession {
     nullable: true,
   })
   visitorEmail: string;
+  @Column({
+    type: 'timestamp',
+    nullable: false,
+  })
+  requestTimestamp: string;
   @CreateDateColumn({
     type: 'timestamp',
     nullable: false,
@@ -53,27 +59,24 @@ export class OwaSession {
   })
   deletedAt: null | number;
 
-  @ManyToOne(() => OwaHost, (host: OwaHost) => host.sessionList)
+  @ManyToOne(() => OwaHost, (host: OwaHost) => host.requestList)
   host: OwaHost;
 
-  @ManyToOne(() => OwaOs, (os: OwaOs) => os.sessionList)
+  @ManyToOne(() => OwaOs, (os: OwaOs) => os.requestList)
   os: OwaOs;
 
-  @ManyToOne(() => OwaUa, (ua: OwaUa) => ua.sessionList)
+  @ManyToOne(() => OwaUa, (ua: OwaUa) => ua.requestList)
   ua: OwaUa;
 
-  @ManyToOne(() => OwaVisitor, (visitor: OwaVisitor) => visitor.sessionList)
+  @ManyToOne(() => OwaVisitor, (visitor: OwaVisitor) => visitor.requestList)
   visitor: OwaVisitor;
 
-  @ManyToOne(() => OwaSite, (site: OwaSite) => site.sessionList)
+  @ManyToOne(() => OwaSite, (site: OwaSite) => site.requestList)
   site: OwaSite;
 
-  @ManyToOne(() => OwaDocument, (document: OwaDocument) => document.firstSessionList)
-  firstPage: OwaDocument;
+  @ManyToOne(() => OwaDocument, (document: OwaDocument) => document.requestList)
+  document: OwaDocument;
 
-  @ManyToOne(() => OwaDocument, (document: OwaDocument) => document.lastSessionList)
-  lastPage: OwaDocument;
-
-  @OneToMany(() => OwaRequest, (req: OwaRequest) => req.session)
-  requestList: OwaRequest[];
+  @ManyToOne(() => OwaSession, (session: OwaSession) => session.requestList)
+  session: OwaSession;
 }
