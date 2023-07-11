@@ -3,9 +3,11 @@ import {
   CreateDateColumn,
   DeleteDateColumn,
   Entity,
+  OneToMany,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
+import { OwaSession } from './owa_session.entity';
 
 @Entity()
 export class OwaUa {
@@ -43,4 +45,7 @@ export class OwaUa {
     nullable: true,
   })
   deletedAt: null | number;
+
+  @OneToMany(() => OwaSession, (session: OwaSession) => session.ua)
+  sessionList: OwaSession[];
 }
